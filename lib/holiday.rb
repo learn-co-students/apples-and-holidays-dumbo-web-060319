@@ -110,6 +110,25 @@ def all_holidays_with_bbq(holiday_hash)
   # return an array of holiday names (as symbols) where supply lists
   # include the string "BBQ"
 
+  # initialize an empty array to store the holiday names.
+  turnt_holidays = []
+
+  # for each season
+  holiday_hash.each do |season, holiday|
+    # check each holiday
+    holiday.each do |day, supplies|
+      # If "BBQ" is in their supply list
+      if supplies.include?("BBQ")
+        # push the holiday into the array
+        turnt_holidays << day
+      end
+    end
+  end
+
+  # mutate the array with flatten - the bang will make it permanent
+  turnt_holidays.flatten!
+  # the following line isn't necessary, either way will return our array
+  turnt_holidays
 end
 
 
