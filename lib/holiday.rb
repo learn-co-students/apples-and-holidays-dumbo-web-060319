@@ -62,6 +62,47 @@ def all_supplies_in_holidays(holiday_hash)
   # Summer:
   #   Fourth Of July: Fireworks, BBQ
   # etc.
+  holiday_hash.each do |season, holiday|
+    # Season
+    puts "#{season.capitalize}:"
+
+    #  for each holiday
+    holiday.each do |holiday_name, supplies|
+      # We'll concatenate this string based on the place of the supplies in the array
+      supply_list = ""
+
+      # Check for the place of each supply
+      supplies.each do |party_favor|
+        # If it's not the first item in the array
+        if party_favor != supplies.first
+          # add a comma and space before it
+          supply_list += ", #{party_favor}"
+        else
+          # otherwise, just add the string
+          supply_list += "#{party_favor}"
+        end
+      end
+
+      # Turn our symbol into a string
+      holiday_name_str = "#{holiday_name}"
+
+      # If the string has an underscore
+      if holiday_name_str.include?("_")
+        # Remove the underscores and turn it into an array
+        holiday_name_arr = holiday_name_str.split("_")
+        # capitalize each word
+        holiday_name_arr.each do |day|  
+          day.capitalize! 
+        end
+        # turn the array into one string ith a space inbetween
+        holiday_name_str = holiday_name_arr.join(" ")
+        # print the holiday name with the appropriate supplies
+        puts "  #{holiday_name_str}: #{supply_list}"
+      else 
+        puts "  #{holiday_name_str.capitalize}: #{supply_list}"
+      end
+    end
+  end
 
 end
 
